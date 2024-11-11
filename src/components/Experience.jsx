@@ -44,6 +44,7 @@ function Experience({onExp, index="false", companyName="", position="", responsi
             <button
             onClick={() => {
                 index==="false" ? onExp(expData) : onExp(expData, index);
+                setExpData({companyName:"", position:"", responsibilities:"", dateStart:"", dateEnd:""});
                }}>
                 Submit
             </button >

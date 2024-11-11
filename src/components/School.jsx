@@ -29,6 +29,7 @@ function School({onEdu, index="false", school="", titleOfStudy="", dateOfStudy="
             <button
             onClick={() => {
                 index==="false" ? onEdu(eduData) : onEdu(eduData, index);
+                setEduData({school:"", titleOfStudy:"", dateOfStudy:""});
                }}>
                 Submit
             </button >

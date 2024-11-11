@@ -1,18 +1,19 @@
 import { useState } from 'react';
 
-function ApplicationView(data, onEdit, onDelete) {
+function ApplicationView({data, onEdit, onDelete}) {
+    
 
     return (
         <div>
-            <GeneralView data={data.general} onEdit={onEdit} />
+            {data.general.length > 0 && <GeneralView index={0} data={data.general} onEdit={onEdit} />}
             <div>
-                {data.education.map((value, index) => 
-                <EducationView key={"school-" + index } onEdit={onEdit} onDelete={onDelete} index={index} />
+                {data.education.length > 0 && data.education.map((value, index) => 
+                <EducationView data={value} key={"school-" + index } onEdit={onEdit} onDelete={onDelete} index={index} />
                   )}
             </div>
             <div>
-                {data.experience.map((value, index) => 
-                <ExperienceView key={"experience-" + index} onEdit={onEdit} onDelete={onDelete} index={index} />  
+                {data.experience.length > 0 && data.experience.map((value, index) => 
+                <ExperienceView data={value} key={"experience-" + index} onEdit={onEdit} onDelete={onDelete} index={index} />  
                 )}
             </div>
             
@@ -24,7 +25,7 @@ function ApplicationView(data, onEdit, onDelete) {
 }
 
 
-function ExperienceView(data, index, onEdit, onDelete) {
+function ExperienceView({data, index, onEdit, onDelete}) {
     const [isHover, setIsHover] = useState(false);
     const whenMouseOver = () => {
         setIsHover(true);
@@ -35,7 +36,7 @@ function ExperienceView(data, index, onEdit, onDelete) {
     };
 
     return (
-        <div onMouseOver={whenMouseOver} onMouseEnter={whenMouseOut}>
+        <div onMouseOver={whenMouseOver} onMouseOut={whenMouseOut}>
             <div > 
                 <div>{data.companyName}</div>
                 <div>{data.position}</div>
@@ -45,8 +46,8 @@ function ExperienceView(data, index, onEdit, onDelete) {
             </div>
             {isHover && (
                 <div>
-                    <button onClick={() => onEdit(["experience", index])}>Edit</button >
-                    <button  onClick={() => onDelete(["experience", index])}>Delete</button>
+                    <button onClick={() => onEdit("experience", index)}>Edit</button >
+                    <button  onClick={() => onDelete("experience", index)}>Delete</button>
                 </div>
             )}
         </div>
@@ -56,7 +57,7 @@ function ExperienceView(data, index, onEdit, onDelete) {
 }
 
 
-function EducationView(data, index, onEdit, onDelete) {
+function EducationView({data, index, onEdit, onDelete}) {
     const [isHover, setIsHover] = useState(false);
     const whenMouseOver = () => {
         setIsHover(true);
@@ -67,7 +68,7 @@ function EducationView(data, index, onEdit, onDelete) {
     };
 
     return (
-        <div onMouseOver={whenMouseOver} onMouseEnter={whenMouseOut}>
+        <div onMouseOver={whenMouseOver} onMouseOut={whenMouseOut}>
         <div > 
             <div>{data.school}</div>
             <div>{data.titleOfStudy} </div>
@@ -75,8 +76,8 @@ function EducationView(data, index, onEdit, onDelete) {
         </div>
         {isHover && (
             <div>
-                <button onClick={() => onEdit(["education", index])}>Edit</button >
-                <button  onClick={() => onDelete(["education", index])}>Delete</button>
+                <button onClick={() => onEdit("education", index)}>Edit</button >
+                <button  onClick={() => onDelete("education", index)}>Delete</button>
             </div>
         )}
     </div>
@@ -84,7 +85,7 @@ function EducationView(data, index, onEdit, onDelete) {
     )
 }
 
-function GeneralView(data, index, onEdit) {
+function GeneralView({data, index, onEdit}) {
     const [isHover, setIsHover] = useState(false);
     const whenMouseOver = () => {
         setIsHover(true);
@@ -95,7 +96,7 @@ function GeneralView(data, index, onEdit) {
     };
 
     return (
-        <div onMouseOver={whenMouseOver} onMouseEnter={whenMouseOut}>
+        <div onMouseOver={whenMouseOver} onMouseOut={whenMouseOut}>
         <div > 
             <div>{data[0].name}</div>
             <div>{data[0].phone} </div>
@@ -103,7 +104,7 @@ function GeneralView(data, index, onEdit) {
         </div>
         {isHover && (
             <div>
-                <button onClick={() => onEdit(["general", index])}>Edit</button >
+                <button onClick={() => onEdit("general", index)}>Edit</button >
             </div>
         )}
     </div>
