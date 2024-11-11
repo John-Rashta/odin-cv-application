@@ -1,55 +1,42 @@
 import { useState } from 'react';
 
-function General({onGen}) {
-    const [genData, setGenData] = useState({companyName: "", position: "", responsibilities: "", dateStart: "", dateEnd: ""});
+function General({onGen, index="false", name="", phone="", email=""}) {
+    const [genData, setGenData] = useState({name, phone, email});
 
     return (
         <>
             <input
             type="text"
-            value={genData.companyName}
+            value={genData.name}
             onChange={(e) => {
-                setGenData({...genData, companyName: e.target.value});
+                setGenData({...genData, name: e.target.value});
             }}
             />
             <input
             type="text"
-            value={genData.position}
+            value={genData.phone}
             onChange={(e) => {
-                setGenData({...genData, position: e.target.value});
-            }}
-            />
-            <textarea
-            rows="5"
-            cols="30"
-            value={genData.responsibilities}
-            onChange={(e) => {
-                setGenData({...genData, responsibilities: e.target.value});
+                setGenData({...genData, phone: e.target.value});
             }}
             />
             <input
             type="text"
-            value={genData.dateStart}
+            value={genData.email}
             onChange={(e) => {
-                setGenData({...genData, dateStart: e.target.value});
-            }}
-            />
-            <input
-            type="text"
-            value={genData.dateEnd}
-            onChange={(e) => {
-                setGenData({...genData, dateEnd: e.target.value});
+                setGenData({...genData, email: e.target.value});
             }}
             />
             <button
             onClick={() => {
-                onGen(genData);
+                index==="false" ? onGen(genData) : onGen(genData, index);
                }}>
                 Submit
             </button >
         </>
     );
 
-}
+};
+
+
 
 export {General};
