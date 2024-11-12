@@ -1,0 +1,61 @@
+@import url("./rules.css");
+
+/* basic layout */
+
+.mainContainer {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+header {
+    text-align: center;
+    padding: 5vh;
+    background-color: #38bdf8;
+}
+
+main {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    min-width: 20vw;
+    background-color: #06b6d4;
+    
+}
+
+.sideBar>div {
+    background-color: #bae6fd;
+}
+
+.mainView {
+    background-color: #a5f3fc;
+}
+
+
+input,
+textarea {
+    margin-left: 10px;
+    min-width: 13vw;
+    background-color:#cffafe;
+    padding: 3px;
+    border-color: #075985;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+input[type="date"] {
+    min-width: 5vw;
+}
+
+button {
+    background-color: #93c5fd;
+    font-weight: 700 !important;
+    border-radius: 10px;
+    border-color: #1e3a8a;
+    border-style:solid;
+}
